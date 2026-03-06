@@ -62,6 +62,9 @@ CMakeSettings.json
 # VSCode
 .vscode
 
+# Clion
+.idea
+
 # MinGW
 *.Debug
 *.Release

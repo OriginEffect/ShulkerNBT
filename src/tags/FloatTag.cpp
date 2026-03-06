@@ -1,4 +1,4 @@
-#include "../../include/shulker/tags/FloatTag.h"
+#include "shulker/tags/FloatTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

@@ -1,4 +1,4 @@
-#include "../../include/shulker/tags/LongTag.h"
+#include "shulker/tags/LongTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

@@ -15,7 +15,6 @@ set(SHULKER_NBT_LIB_NAME ${PROJECT_NAME})
 # Build Options
 # ----------------------
 option(SHULKER_NBT_BUILD_STATIC "Build static library" OFF)
-option(SHULKER_NBT_BUILD_EXAMPLES "Build examples" OFF)
 option(SHULKER_NBT_BUILD_TESTS "Build tests" OFF)
 
 # ----------------------
@@ -55,11 +54,6 @@ target_link_libraries(${SHULKER_NBT_LIB_NAME}
 # ----------------------
 
 add_subdirectory(src)
-
-# Examples and tests
-if(SHULKER_NBT_BUILD_EXAMPLES)
-    add_subdirectory(examples)
-endif()
 
 if(SHULKER_NBT_BUILD_TESTS)
     enable_testing()

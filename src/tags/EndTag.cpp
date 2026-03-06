@@ -1,4 +1,4 @@
-#include "../../include/shulker/tags/EndTag.h"
+#include "shulker/tags/EndTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

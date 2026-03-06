@@ -1,4 +1,4 @@
-#include "../../include/shulker/tags/IntTag.h"
+#include "shulker/tags/IntTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

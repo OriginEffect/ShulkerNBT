@@ -1,4 +1,4 @@
-#include "../../include/shulker/tags/ByteArrayTag.h"
+#include "shulker/tags/ByteArrayTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

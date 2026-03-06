@@ -31,7 +31,9 @@ int main() {
             0.25,
             "str"
         }},
-        {"ByteArrayTag", shulker::ByteArrayTag{1, 2, 3}}
+        {"ByteArrayTag", shulker::ByteArrayTag{1, 2, 3}},
+        {"IntArrayTag", shulker::IntArrayTag{128, 256}},
+        {"LongArrayTag", shulker::LongArrayTag{123456}}
     };
 
     auto value1 = nbt["CompoundTag"]["DeepNesting"]["foo"]["x"];

@@ -1,7 +1,7 @@
 #include <utility>
 
-#include "../../include/shulker/tags/ListTag.h"
-#include "../../include/shulker/tags/TagReference.h"
+#include "shulker/tags/ListTag.h"
+#include "shulker/tags/TagReference.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

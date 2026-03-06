@@ -27,6 +27,8 @@ public:
 
     [[nodiscard]] static char symbol() { return 'L'; }
 
+    auto operator[](std::size_t index) -> decltype(std::declval<std::vector<LongTag::LongType>&>()[index]);
+
 private:
     LongArrayType m_value{};
 };

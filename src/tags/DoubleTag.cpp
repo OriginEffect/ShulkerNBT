@@ -1,4 +1,4 @@
-#include "../../include/shulker/tags/DoubleTag.h"
+#include "shulker/tags/DoubleTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

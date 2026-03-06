@@ -27,6 +27,8 @@ public:
 
     [[nodiscard]] static char symbol() { return 'I'; }
 
+    auto operator[](std::size_t index) -> decltype(std::declval<std::vector<IntTag::IntType>&>()[index]);
+
 private:
     IntArrayType m_value{};
 };

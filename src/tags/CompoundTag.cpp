@@ -1,7 +1,7 @@
 #include <utility>
 
-#include "../../include/shulker/tags/CompoundTag.h"
-#include "../../include/shulker/tags/TagReference.h"
+#include "shulker/tags/CompoundTag.h"
+#include "shulker/tags/TagReference.h"
 #include "shulker/io/adapters/OutputAdapters.h"
 #include "shulker/io/snbt/SnbtSerializer.h"
 
