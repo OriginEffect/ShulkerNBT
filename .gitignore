@@ -1,4 +1,4 @@
-# Prerequisites
+﻿# Prerequisites
 *.d
 
 # Compiled Object files
@@ -39,3 +39,36 @@
 
 # debug information files
 *.dwo
+
+# Build directories
+build/
+
+# Visual Studio
+*.ib_pdb_index
+*.idb
+*.sln
+*.suo
+*.vcproj
+*vcproj.*.*.user
+*.ncb
+*.sdf
+*.opensdf
+*.vcxproj
+*vcxproj.*
+.vs
+/out
+CMakeSettings.json
+
+# VSCode
+.vscode
+
+# MinGW
+*.Debug
+*.Release
+
+# CMake
+CMakeUserPresets.json
+
+# .DS_Store
+.DS_Store
+*/.DS_Store

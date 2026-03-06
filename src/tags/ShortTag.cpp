@@ -1,0 +1,5 @@
+#include "../../include/shulker/tags/ShortTag.h"
+
+SHULKER_NBT_NAMESPACE_BEGIN
+
+SHULKER_NBT_NAMESPACE_END
