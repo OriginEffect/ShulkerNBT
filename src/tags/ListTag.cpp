@@ -1,5 +1,7 @@
 #include <utility>
 
+#include "../../include/shulker/io/output/OutputAdapters.h"
+#include "../../include/shulker/io/output/SnbtSerializer.h"
 #include "shulker/tags/ListTag.h"
 #include "shulker/tags/TagReference.h"
 
@@ -34,6 +36,18 @@ TagReference& ListTag::operator[](std::size_t index)
 const TagReference& ListTag::operator[](std::size_t index) const
 {
     return m_value.operator[](index);
+}
+
+std::ostream& operator<<(std::ostream& os, const ListTag& list_tag)
+{
+    const bool pretty_print = os.width() > 0;
+    const auto indentation = pretty_print ? os.width() : 0;
+
+    os.width(0);
+
+    SnbtSerializer serializer(OutputAdapter<char>(os), os.fill());
+    serializer.dump(list_tag, pretty_print, false, static_cast<unsigned int>(indentation));
+    return os;
 }
 
 SHULKER_NBT_NAMESPACE_END

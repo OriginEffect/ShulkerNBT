@@ -29,7 +29,7 @@ public:
 
     CompoundTag(InitType init);
 
-    [[nodiscard]] static TagType type() { return TagType::Compound; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::Compound; }
 
     TagReference& operator[](CompoundType::key_type key);
 

@@ -17,7 +17,9 @@ public:
 
     FloatTag(const FloatType f) : BasicTag(TagValue::Float), m_value(f) {}
 
-    [[nodiscard]] static TagType type() { return TagType::Float; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::Float; }
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const FloatTag& float_tag);
 
 private:
     FloatType m_value{};

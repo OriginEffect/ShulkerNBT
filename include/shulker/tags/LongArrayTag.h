@@ -23,11 +23,13 @@ public:
     LongArrayTag(std::initializer_list<ValueType> init)
         : BasicTag(TagValue::LongArray), m_value(init.begin(), init.end()) {}
 
-    [[nodiscard]] static TagType type() { return TagType::LongArray; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::LongArray; }
 
-    [[nodiscard]] static char symbol() { return 'L'; }
+    [[nodiscard]] static char symbol() noexcept { return 'L'; }
 
     auto operator[](std::size_t index) -> decltype(std::declval<std::vector<LongTag::LongType>&>()[index]);
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const LongArrayTag& long_array_tag);
 
 private:
     LongArrayType m_value{};

@@ -1,7 +1,7 @@
 set(_src
     common/Exceptions.cpp
 
-    io/snbt/SnbtSerializer.cpp
+        io/output/SnbtSerializer.cpp
 
     tags/BasicTag.cpp
     tags/ByteArrayTag.cpp

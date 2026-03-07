@@ -4,7 +4,7 @@
 
 SHULKER_NBT_NAMESPACE_BEGIN
 
-class BinarySerializer
+class NbtWriter
 {
 public:
 };

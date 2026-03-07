@@ -1,7 +1,6 @@
-#include "shulker/io/snbt/SnbtSerializer.h"
-
 #include "shulker/common/Exceptions.h"
 #include "shulker/common/StringUtils.h"
+#include "shulker/io/output/SnbtSerializer.h"
 #include "shulker/tags/CompoundTag.h"
 #include "shulker/tags/TagReference.h"
 

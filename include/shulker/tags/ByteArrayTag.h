@@ -23,11 +23,13 @@ public:
     ByteArrayTag(std::initializer_list<ValueType> init)
         : BasicTag(TagValue::ByteArray), m_value(init.begin(), init.end()) {}
 
-    [[nodiscard]] static TagType type() { return TagType::ByteArray; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::ByteArray; }
 
-    [[nodiscard]] static char symbol() { return 'B'; }
+    [[nodiscard]] static char symbol() noexcept { return 'B'; }
 
     auto operator[](std::size_t index) -> decltype(std::declval<std::vector<ByteTag::ByteType>&>()[index]);
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const ByteArrayTag& byte_array_tag);
 
 private:
     ByteArrayType m_value{};

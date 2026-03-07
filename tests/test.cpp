@@ -33,16 +33,15 @@ int main() {
         }},
         {"ByteArrayTag", shulker::ByteArrayTag{1, 2, 3}},
         {"IntArrayTag", shulker::IntArrayTag{128, 256}},
-        {"LongArrayTag", shulker::LongArrayTag{123456}}
+        {"LongArrayTag", shulker::LongArrayTag{123456}},
+        {"中文测试", "😡"}
     };
 
     auto value1 = nbt["CompoundTag"]["DeepNesting"]["foo"]["x"];
-    const auto& tag1 = value1.as<shulker::IntTag>();
-    std::cout << tag1.get() << "\n";
+    std::cout << value1 << "\n";
 
     auto value2 = nbt["ListTag"][2];
-    const auto& tag2 = value2.as<shulker::StringTag>();
-    std::cout << tag2.get() << "\n";
+    std::cout << value2 << "\n";
 
     auto& value3 = nbt["ByteArrayTag"].as<shulker::ByteArrayTag>()[1];
     std::cout << static_cast<int>(value3) << "\n";

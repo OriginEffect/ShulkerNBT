@@ -1,5 +1,5 @@
-#include "shulker/io/adapters/OutputAdapters.h"
-#include "shulker/io/snbt/SnbtSerializer.h"
+#include "../../include/shulker/io/output/OutputAdapters.h"
+#include "../../include/shulker/io/output/SnbtSerializer.h"
 #include "shulker/tags/BasicTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN

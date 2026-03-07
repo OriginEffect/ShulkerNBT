@@ -17,7 +17,9 @@ public:
 
     EndTag() = default;
 
-    [[nodiscard]] static TagType type() { return TagType::End; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::End; }
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const EndTag& end_tag);
 
 private:
     EndType m_value{};

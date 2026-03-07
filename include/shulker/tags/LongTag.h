@@ -25,7 +25,9 @@ public:
         std::is_integral_v<ValueType> && std::is_unsigned_v<ValueType>, int> = 0>
     LongTag(ValueType v) : BasicTag(TagValue::UnsignedLong), m_value(static_cast<LongType>(v)) {}
 
-    [[nodiscard]] static TagType type() { return TagType::Long; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::Long; }
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const LongTag& long_tag);
 
 private:
     LongType m_value{};

@@ -1,6 +1,8 @@
 #include <utility>
 
 #include "shulker/common/StringUtils.h"
+#include "shulker/io/output/OutputAdapters.h"
+#include "shulker/io/output/SnbtSerializer.h"
 #include "shulker/tags/TagReference.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
@@ -101,6 +103,13 @@ TagReference& TagReference::operator[](CompoundTag::CompoundType::key_type key) 
 
 const TagReference& TagReference::operator[](const CompoundTag::CompoundType::key_type& key) const {
 
+}
+
+std::ostream& operator<<(std::ostream& os, const TagReference& tag_ref)
+{
+    return std::visit([&os](auto& tag) -> std::ostream& {
+        return os << tag;
+    }, tag_ref.m_tag_storage);
 }
 
 SHULKER_NBT_NAMESPACE_END

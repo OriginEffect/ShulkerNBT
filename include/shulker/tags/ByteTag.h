@@ -37,6 +37,8 @@ public:
 
     [[nodiscard]] ByteType get() const noexcept { return m_value; }
 
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const ByteTag& byte_tag);
+
 private:
     ByteType m_value{};
 };

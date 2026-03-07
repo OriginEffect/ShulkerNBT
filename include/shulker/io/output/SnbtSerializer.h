@@ -1,15 +1,13 @@
 #pragma once
 
 #include <array>
-#include <charconv>
-#include <cmath>
 #include <utility>
 
 #include <fmt/xchar.h>
 
 #include "shulker/common/MacroScope.h"
 
-#include "shulker/io/adapters/OutputAdapters.h"
+#include "shulker/io/output/OutputAdapters.h"
 #include "shulker/meta/TypeTraits.h"
 #include "shulker/tags/BasicTag.h"
 #include "shulker/tags/StringTag.h"

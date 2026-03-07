@@ -40,6 +40,8 @@ public:
 
     const TagReference& operator[](std::size_t index) const;
 
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const ListTag& list_tag);
+
 private:
     ListType m_value{};
 };

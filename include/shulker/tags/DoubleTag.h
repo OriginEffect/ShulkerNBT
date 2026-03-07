@@ -17,7 +17,9 @@ public:
 
     DoubleTag(const DoubleType f) : BasicTag(TagValue::Double), m_value(f) {}
 
-    [[nodiscard]] static TagType type() { return TagType::Double; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::Double; }
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const DoubleTag& double_tag);
 
 private:
     DoubleType m_value{};

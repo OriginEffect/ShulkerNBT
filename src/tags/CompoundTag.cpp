@@ -1,9 +1,9 @@
 #include <utility>
 
+#include "shulker/io/output/OutputAdapters.h"
+#include "shulker/io/output/SnbtSerializer.h"
 #include "shulker/tags/CompoundTag.h"
 #include "shulker/tags/TagReference.h"
-#include "shulker/io/adapters/OutputAdapters.h"
-#include "shulker/io/snbt/SnbtSerializer.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 

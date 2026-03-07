@@ -23,11 +23,13 @@ public:
     IntArrayTag(std::initializer_list<ValueType> init)
         : BasicTag(TagValue::IntArray), m_value(init.begin(), init.end()) {}
 
-    [[nodiscard]] static TagType type() { return TagType::IntArray; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::IntArray; }
 
-    [[nodiscard]] static char symbol() { return 'I'; }
+    [[nodiscard]] static char symbol() noexcept { return 'I'; }
 
     auto operator[](std::size_t index) -> decltype(std::declval<std::vector<IntTag::IntType>&>()[index]);
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const IntArrayTag& int_array_tag);
 
 private:
     IntArrayType m_value{};

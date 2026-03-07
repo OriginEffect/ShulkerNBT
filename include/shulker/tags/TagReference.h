@@ -1,7 +1,5 @@
 #pragma once
 
-#include <memory>
-#include <stdexcept>
 #include <variant>
 
 #include "shulker/common/Exceptions.h"
@@ -136,6 +134,8 @@ public:
     {
         return operator[](CompoundTag::CompoundType::key_type(key));
     }
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const TagReference& tag_ref);
 
 private:
     TagVariant m_tag_storage;

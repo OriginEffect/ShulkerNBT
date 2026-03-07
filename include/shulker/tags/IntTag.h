@@ -30,7 +30,7 @@ public:
 
     [[nodiscard]] IntType get() const noexcept { return m_value; }
 
-    friend std::ostream& operator<<(std::ostream& o, const IntTag& tag);
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const IntTag& int_tag);
 
 private:
     IntType m_value{};

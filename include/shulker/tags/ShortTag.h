@@ -25,7 +25,9 @@ public:
         std::is_integral_v<ValueType> && std::is_unsigned_v<ValueType>, int> = 0>
     ShortTag(ValueType v) : BasicTag(TagValue::UnsignedShort), m_value(static_cast<ShortType>(v)) {}
 
-    [[nodiscard]] static TagType type() { return TagType::Short; }
+    [[nodiscard]] static TagType type() noexcept { return TagType::Short; }
+
+    SHULKER_API friend std::ostream& operator<<(std::ostream& os, const ShortTag& short_tag);
 
 private:
     ShortType m_value{};
