@@ -35,13 +35,11 @@ target_include_directories(${SHULKER_NBT_LIB_NAME} PUBLIC
     $<INSTALL_INTERFACE:include>
 )
 
-set(JSON_Install OFF CACHE INTERNAL "")
-add_subdirectory(third/fmt)
-add_subdirectory(third/nlohmann_json)
+find_package(fmt REQUIRED)
+find_package(ZLIB REQUIRED)
 target_link_libraries(${SHULKER_NBT_LIB_NAME}
-    PUBLIC
-    fmt::fmt
-    nlohmann_json::nlohmann_json
+    PRIVATE fmt::fmt
+    PRIVATE ZLIB::ZLIB
 )
 
 # ----------------------

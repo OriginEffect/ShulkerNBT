@@ -1,8 +1,8 @@
 #include <utility>
 
-#include "shulker/common/StringUtils.h"
-#include "shulker/io/output/OutputAdapters.h"
-#include "shulker/io/output/SnbtSerializer.h"
+#include "../../include/shulker/detail/StringUtils.h"
+#include "shulker/detail/io/output/OutputAdapters.h"
+#include "shulker/detail/io/output/SnbtSerializer.h"
 #include "shulker/tags/TagReference.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
@@ -43,39 +43,9 @@ const BasicTag& TagReference::getTag() const
     }, m_tag_storage);
 }
 
-const char* TagReference::getTypeName() const noexcept
+std::string TagReference::getTypeName() const noexcept
 {
-    switch (getType()) {
-        case TagType::End:
-            return "end tag";
-        case TagType::Byte:
-            return "byte tag";
-        case TagType::Short:
-            return "short tag";
-        case TagType::Int:
-            return "int tag";
-        case TagType::Long:
-            return "long tag";
-        case TagType::Float:
-            return "float tag";
-        case TagType::Double:
-            return "double tag";
-        case TagType::ByteArray:
-            return "byte array tag";
-        case TagType::String:
-            return "string tag";
-        case TagType::List:
-            return "list tag";
-        case TagType::Compound:
-            return "compound tag";
-        case TagType::IntArray:
-            return "int array tag";
-        case TagType::LongArray:
-            return "long array tag";
-        case TagType::Unknown:
-        default:
-            return "unknown tag";
-    }
+    return ::shulker::getTypeName(getType());
 }
 
 TagReference& TagReference::operator[](std::size_t index)
@@ -83,7 +53,7 @@ TagReference& TagReference::operator[](std::size_t index)
     if (isListTag()) {
         return std::get<ListTag>(m_tag_storage).operator[](index);
     }
-    NBT_THROW(TypeError::create(102, concat("cannot use operator[] with a numeric argument with ", getTypeName())));
+    NBT_THROW(detail::TypeError::create(102, detail::concat("cannot use operator[] with a numeric argument with ", getTypeName())));
 }
 
 const TagReference& TagReference::operator[](std::size_t index) const
@@ -91,14 +61,14 @@ const TagReference& TagReference::operator[](std::size_t index) const
     if (isListTag()) {
         return std::get<ListTag>(m_tag_storage).operator[](index);
     }
-    NBT_THROW(TypeError::create(102, concat("cannot use operator[] with a numeric argument with ", getTypeName())));
+    NBT_THROW(detail::TypeError::create(102, detail::concat("cannot use operator[] with a numeric argument with ", getTypeName())));
 }
 
 TagReference& TagReference::operator[](CompoundTag::CompoundType::key_type key) {
     if (isCompoundTag()) {
         return std::get<CompoundTag>(m_tag_storage).operator[](std::move(key));
     }
-    NBT_THROW(TypeError::create(103, concat("cannot use operator[] with a string argument with ", getTypeName())));
+    NBT_THROW(detail::TypeError::create(103, detail::concat("cannot use operator[] with a string argument with ", getTypeName())));
 }
 
 const TagReference& TagReference::operator[](const CompoundTag::CompoundType::key_type& key) const {

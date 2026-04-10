@@ -1,5 +1,5 @@
-#include "../../include/shulker/io/output/OutputAdapters.h"
-#include "../../include/shulker/io/output/SnbtSerializer.h"
+#include "shulker/detail/io/output/OutputAdapters.h"
+#include "shulker/detail/io/output/SnbtSerializer.h"
 #include "shulker/tags/IntArrayTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
@@ -17,8 +17,8 @@ std::ostream& operator<<(std::ostream& os, const IntArrayTag& int_array_tag)
 
     os.width(0);
 
-    SnbtSerializer serializer(OutputAdapter<char>(os), os.fill());
-    serializer.dump(int_array_tag, pretty_print, false, static_cast<unsigned int>(indentation));
+    detail::SnbtSerializer serializer(detail::OutputAdapter<char>(os), os.fill());
+    serializer.dump(int_array_tag, pretty_print, false, false, static_cast<unsigned int>(indentation));
     return os;
 }
 

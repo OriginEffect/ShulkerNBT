@@ -1,5 +1,5 @@
-#include "../../include/shulker/io/output/OutputAdapters.h"
-#include "../../include/shulker/io/output/SnbtSerializer.h"
+#include "shulker/detail/io/output/OutputAdapters.h"
+#include "shulker/detail/io/output/SnbtSerializer.h"
 #include "shulker/tags/BasicTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
@@ -12,15 +12,16 @@ TagValue BasicTag::valueType() const
 std::string BasicTag::dumpSnbt(
     const int indent,
     const char indent_char,
-    const bool keep_snbt_type) const
+    const bool keep_bool_type,
+    const bool ensure_ascii) const
 {
     std::string result;
-    SnbtSerializer serializer(OutputAdapter<char>(result), indent_char);
+    detail::SnbtSerializer serializer(detail::OutputAdapter<char>(result), indent_char);
 
     if (indent >= 0) {
-        serializer.dump(*this, true, keep_snbt_type, static_cast<unsigned int>(indent));
+        serializer.dump(*this, true, keep_bool_type, ensure_ascii, static_cast<unsigned int>(indent));
     } else {
-        serializer.dump(*this, false, keep_snbt_type, 0);
+        serializer.dump(*this, false, keep_bool_type, ensure_ascii, 0);
     }
 
     return result;

@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "shulker/common/MacroScope.h"
+#include "../detail/MacroScope.h"
 
 #include "shulker/tags/BasicTag.h"
 
@@ -12,11 +12,13 @@ class TagReference;
 
 class SHULKER_API ListTag : public BasicTag
 {
-    SHULKER_NBT_FRIEND_CLASS(SnbtSerializer);
+    SHULKER_NBT_FRIEND_CLASS(detail::NbtWriter)
+    SHULKER_NBT_FRIEND_CLASS(detail::SnbtSerializer);
 
 public:
     using ListType = std::vector<TagReference>;
 
+    // DLL exports require a complete definition
     ListTag();
     ~ListTag() override;
     ListTag(const ListTag& other);
@@ -34,7 +36,13 @@ public:
 
     [[nodiscard]] static TagType type() noexcept { return TagType::List; }
 
+    [[nodiscard]] static TagId id() noexcept { return 0x09; }
+
     [[nodiscard]] std::size_t size() const noexcept;
+
+    [[nodiscard]] bool isHeterogeneous() const;
+
+    [[nodiscard]] TagType elementType() const;
 
     TagReference& operator[](std::size_t index);
 

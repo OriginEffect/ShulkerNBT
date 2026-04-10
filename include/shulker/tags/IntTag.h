@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <iostream>
 
-#include "shulker/common/MacroScope.h"
+#include "../detail/MacroScope.h"
 
 #include "shulker/tags/BasicTag.h"
 
@@ -11,22 +11,21 @@ SHULKER_NBT_NAMESPACE_BEGIN
 
 class SHULKER_API IntTag : public BasicTag
 {
-    SHULKER_NBT_FRIEND_CLASS(SnbtSerializer);
+    SHULKER_NBT_FRIEND_CLASS(detail::NbtWriter)
+    SHULKER_NBT_FRIEND_CLASS(detail::SnbtSerializer);
 
 public:
     using IntType = std::int32_t;
 
-    IntTag() : BasicTag(TagValue::SignedInt) {}
+    IntTag() : BasicTag(TagValue::Int) {}
 
     template<typename ValueType, std::enable_if_t<
-        std::is_integral_v<ValueType> && std::is_signed_v<ValueType>, int> = 0>
-    IntTag(ValueType v) : BasicTag(TagValue::SignedInt), m_value(static_cast<IntType>(v)) {}
-
-    template<typename ValueType, std::enable_if_t<
-        std::is_integral_v<ValueType> && std::is_unsigned_v<ValueType>, int> = 0>
-    IntTag(ValueType v) : BasicTag(TagValue::UnsignedInt), m_value(static_cast<IntType>(v)) {}
+        std::is_integral_v<ValueType>, int> = 0>
+    IntTag(ValueType v) : BasicTag(TagValue::Int), m_value(static_cast<IntType>(v)) {}
 
     [[nodiscard]] static TagType type() noexcept  { return TagType::Int; }
+
+    [[nodiscard]] static TagId id() noexcept { return 0x03; }
 
     [[nodiscard]] IntType get() const noexcept { return m_value; }
 

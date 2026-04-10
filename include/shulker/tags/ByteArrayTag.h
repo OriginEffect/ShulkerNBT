@@ -2,16 +2,25 @@
 
 #include <vector>
 
-#include "shulker/common/MacroScope.h"
+#include "../detail/MacroScope.h"
 
 #include "shulker/tags/BasicTag.h"
 #include "shulker/tags/ByteTag.h"
 
 SHULKER_NBT_NAMESPACE_BEGIN
 
+namespace detail
+{
+    class SnbtParser;
+    class NbtReader;
+}
+
 class SHULKER_API ByteArrayTag : public BasicTag
 {
-    SHULKER_NBT_FRIEND_CLASS(SnbtSerializer);
+    SHULKER_NBT_FRIEND_CLASS(detail::NbtWriter)
+    SHULKER_NBT_FRIEND_CLASS(detail::SnbtSerializer);
+    SHULKER_NBT_FRIEND_CLASS(detail::SnbtParser);
+    SHULKER_NBT_FRIEND_CLASS(detail::NbtReader);
 
 public:
     using ByteArrayType = std::vector<ByteTag::ByteType>;
@@ -24,6 +33,8 @@ public:
         : BasicTag(TagValue::ByteArray), m_value(init.begin(), init.end()) {}
 
     [[nodiscard]] static TagType type() noexcept { return TagType::ByteArray; }
+
+    [[nodiscard]] static TagId id() noexcept { return 0x07; }
 
     [[nodiscard]] static char symbol() noexcept { return 'B'; }
 

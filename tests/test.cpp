@@ -1,5 +1,11 @@
-﻿#include <iomanip>
+﻿#include <cassert>
+#include <cstdint>
+#include <cstring>
+#include <fstream>
+#include <iomanip>
 #include <iostream>
+#include <sstream>
+#include <string>
 
 #include <shulker/Nbt.h>
 
@@ -37,6 +43,9 @@ int main() {
         {"中文测试", "😡"}
     };
 
+    std::size_t bytes = nbt.dumpFile("test.nbt", true, shulker::CompressionMode::Gzip);
+    std::cout << "写入量：" << bytes << "\n\n";
+
     auto value1 = nbt["CompoundTag"]["DeepNesting"]["foo"]["x"];
     std::cout << value1 << "\n";
 
@@ -52,5 +61,15 @@ int main() {
     std::cout << std::setw(4) << nbt << std::endl;
 
     std::cout << '\n' << "dumpSnbt()输出：\n";
-    std::cout << nbt.dumpSnbt(-1, ' ', true) << std::endl;
+    std::cout << nbt.dumpSnbt(4, ' ', true, true) << std::endl;
+
+    std::cout << "读取level.dat：\n";
+    std::fstream file("./nbt/test-raw.nbt", std::ios::in | std::ios::binary);
+    // file.seekg(8, std::ios::beg);
+    auto result = shulker::readNbt(file, true, shulker::CompressionMode::Raw).dumpSnbt(2, ' ', true);
+
+    std::cout << result << "\n";
+    // std::ofstream out("result.snbt");
+    // out << result;
+    // out.close();
 }

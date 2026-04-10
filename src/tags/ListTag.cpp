@@ -1,7 +1,7 @@
 #include <utility>
 
-#include "../../include/shulker/io/output/OutputAdapters.h"
-#include "../../include/shulker/io/output/SnbtSerializer.h"
+#include "shulker/detail/io/output/OutputAdapters.h"
+#include "shulker/detail/io/output/SnbtSerializer.h"
 #include "shulker/tags/ListTag.h"
 #include "shulker/tags/TagReference.h"
 
@@ -25,6 +25,26 @@ std::size_t ListTag::size() const noexcept
     return m_value.size();
 }
 
+bool ListTag::isHeterogeneous() const
+{
+    auto it = m_value.cbegin();
+    TagType elem_type = it->getType();
+    for (++it; it != m_value.cend(); ++it) {
+        if (it->getType() != elem_type) {
+            return true;
+        }
+    }
+    return false;
+}
+
+TagType ListTag::elementType() const
+{
+    if (isHeterogeneous()) {
+        return TagType::Compound;
+    }
+    return m_value[0].getType();
+}
+
 TagReference& ListTag::operator[](std::size_t index)
 {
     if (index >= m_value.size()) {
@@ -45,8 +65,8 @@ std::ostream& operator<<(std::ostream& os, const ListTag& list_tag)
 
     os.width(0);
 
-    SnbtSerializer serializer(OutputAdapter<char>(os), os.fill());
-    serializer.dump(list_tag, pretty_print, false, static_cast<unsigned int>(indentation));
+    detail::SnbtSerializer serializer(detail::OutputAdapter<char>(os), os.fill());
+    serializer.dump(list_tag, pretty_print, false, false, static_cast<unsigned int>(indentation));
     return os;
 }
 

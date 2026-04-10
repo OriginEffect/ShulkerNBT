@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "shulker/common/MacroScope.h"
+#include "../detail/MacroScope.h"
 
 #include "shulker/tags/BasicTag.h"
 
@@ -10,7 +10,8 @@ SHULKER_NBT_NAMESPACE_BEGIN
 
 class SHULKER_API StringTag : public BasicTag
 {
-    SHULKER_NBT_FRIEND_CLASS(SnbtSerializer);
+    SHULKER_NBT_FRIEND_CLASS(detail::NbtWriter)
+    SHULKER_NBT_FRIEND_CLASS(detail::SnbtSerializer);
 
 public:
     using StringType = std::string;
@@ -24,6 +25,8 @@ public:
     StringTag(StringType&& s) : BasicTag(TagValue::String), m_value(std::move(s)) {}
 
     [[nodiscard]] static TagType type() noexcept { return TagType::String; }
+
+    [[nodiscard]] static TagId id() noexcept { return 0x08; }
 
     [[nodiscard]] StringType get() const noexcept { return m_value; }
 

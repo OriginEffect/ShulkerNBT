@@ -17,3 +17,8 @@
 
 // Tag reference
 #include "shulker/tags/TagReference.h"
+
+// Export
+#include "shulker/CompressionMode.h"
+#include "shulker/Parse.h"
+#include "shulker/Type.h"

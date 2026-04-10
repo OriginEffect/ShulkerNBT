@@ -1,6 +1,6 @@
 #pragma once
 
-#include "shulker/common/MacroScope.h"
+#include "../detail/MacroScope.h"
 
 #include "shulker/tags/BasicTag.h"
 
@@ -8,7 +8,8 @@ SHULKER_NBT_NAMESPACE_BEGIN
 
 class SHULKER_API FloatTag : public BasicTag
 {
-    SHULKER_NBT_FRIEND_CLASS(SnbtSerializer);
+    SHULKER_NBT_FRIEND_CLASS(detail::NbtWriter)
+    SHULKER_NBT_FRIEND_CLASS(detail::SnbtSerializer);
 
 public:
     using FloatType = float;
@@ -18,6 +19,8 @@ public:
     FloatTag(const FloatType f) : BasicTag(TagValue::Float), m_value(f) {}
 
     [[nodiscard]] static TagType type() noexcept { return TagType::Float; }
+
+    [[nodiscard]] static TagId id() noexcept { return 0x05; }
 
     SHULKER_API friend std::ostream& operator<<(std::ostream& os, const FloatTag& float_tag);
 

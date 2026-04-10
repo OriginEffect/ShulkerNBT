@@ -2,9 +2,9 @@
 
 #include <variant>
 
-#include "shulker/common/Exceptions.h"
-#include "shulker/common/MacroScope.h"
-#include "shulker/meta/TypeTraits.h"
+#include "shulker/detail/Exceptions.h"
+#include "shulker/detail/MacroScope.h"
+#include "shulker/detail/meta/TypeTraits.h"
 
 #include "shulker/tags/ByteArrayTag.h"
 #include "shulker/tags/ByteTag.h"
@@ -41,7 +41,11 @@ public:
 
     template<typename TagType, std::enable_if_t<
         std::is_base_of_v<BasicTag, TagType> && !std::is_same_v<BasicTag, TagType>, int> = 0>
-    TagReference(TagType tag) : m_tag_storage(std::move(tag)) {}
+    TagReference(TagType&& tag) : m_tag_storage(std::forward<TagType>(tag)) {}
+
+    template<typename TagType, std::enable_if_t<
+        std::is_base_of_v<BasicTag, TagType> && !std::is_same_v<BasicTag, TagType>, int> = 0>
+    TagReference(const TagType& tag) : m_tag_storage(tag) {}
 
     template<typename TagType, typename... Args>
     TagReference(std::in_place_type_t<TagType>, Args&&... args)
@@ -49,7 +53,7 @@ public:
 
     template<typename ValueType, std::enable_if_t<
         std::is_integral_v<ValueType>, int> = 0>
-    TagReference(ValueType integer) : m_tag_storage(tag_from_value_size_t<ValueType>{integer}) {}
+    TagReference(ValueType integer) : m_tag_storage(detail::tag_from_value_size_t<ValueType>{integer}) {}
 
     TagReference(FloatTag::FloatType f) : m_tag_storage(FloatTag{f}) {}
 
@@ -78,7 +82,7 @@ public:
     {
         auto* tag_p = std::get_if<TagType>(&m_tag_storage);
         if (!tag_p) {
-            NBT_THROW(TypeError::create(101, "the type held by the tag reference is inconsistent with the expected type"));
+            NBT_THROW(detail::TypeError::create(101, "the type held by the tag reference is inconsistent with the expected type"));
         }
         return *tag_p;
     }
@@ -88,7 +92,7 @@ public:
     {
         auto* tag_p = std::get_if<TagType>(&m_tag_storage);
         if (!tag_p) {
-            NBT_THROW(TypeError::create(101, "the type held by the tag reference is inconsistent with the expected type"));
+            NBT_THROW(detail::TypeError::create(101, "the type held by the tag reference is inconsistent with the expected type"));
         }
         return *tag_p;
     }
@@ -109,7 +113,7 @@ public:
 
     [[nodiscard]] TagType getType() const noexcept { return static_cast<TagType>(m_tag_storage.index()); }
 
-    [[nodiscard]] const char* getTypeName() const noexcept;
+    [[nodiscard]] std::string getTypeName() const noexcept;
 
     [[nodiscard]] TagId getId() const noexcept { return m_tag_storage.index(); }
 

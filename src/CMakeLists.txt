@@ -1,7 +1,11 @@
 set(_src
-    common/Exceptions.cpp
+    detail/Exceptions.cpp
 
-        io/output/SnbtSerializer.cpp
+    detail/io/input/NbtDecompressor.cpp
+    detail/io/input/NbtReader.cpp
+    detail/io/output/NbtCompressor.cpp
+    detail/io/output/NbtWriter.cpp
+    detail/io/output/SnbtSerializer.cpp
 
     tags/BasicTag.cpp
     tags/ByteArrayTag.cpp
